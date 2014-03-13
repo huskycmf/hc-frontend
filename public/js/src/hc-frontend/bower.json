@@ -1,0 +1,23 @@
+{
+  "name": "hc-frontend",
+  "version": "0.0.0",
+  "authors": [
+    "Milotskiy Alexey <spalaxinco@gmail.com>"
+  ]
+  ,
+  "license": "MIT",
+  
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+
+  "dependencies": {
+      "dojo": ">=1.9.2",
+      "dijit": ">=1.9.2",
+      "dojox": ">=1.9.2"
+  }
+}

@@ -1,0 +1,41 @@
+{
+    "name": "huskycms/hc-frontend",
+    "type": "huskycms-frontend",
+    "description": "HuskyCMS frontend",
+    "authors": [
+        {
+            "name": "Mylotskyi Oleksii",
+            "email": "spalaxinco@gmail.com"
+        }
+    ],
+    "keywords": [
+        "huskycms", "admin"
+    ],
+    "license": "MIT",
+    "homepage": "http://huskycms.com/hc-frontend",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.milsdev.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/PHPUnit": "3.7.*"
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "huskycms/hc-core": "dev-master",
+        "spalax/zf2-libs": "dev-master",
+        "zendframework/zendframework": "2.2.0",
+        "rwoverdijk/assetmanager": "1.3.5"
+    },
+    "autoload": {
+        "psr-0": {
+            "HcFrontend": "src/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    },
+    "minimum-stability": "dev"
+}

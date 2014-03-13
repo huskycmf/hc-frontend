@@ -1,0 +1,27 @@
+{
+    "name": "hc-frontend",
+    "author": "Mylotskyi Oleksii",
+    "version": "0.0.1",
+    "description": "Translations management module for cms",
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "http://opensource.org/licenses/MIT"
+        }
+    ],
+    "maintainers": [
+        {
+            "name": "Mylotskyi Oleksii",
+            "email": "oleksii.mylotskyi@milsdev.com"
+        }
+    ],
+    "directories": {
+        "lib": "."
+    },
+    "dependencies": {
+        "dojo": "1.9.1",
+        "dijit": "1.9.1",
+        "dojox": "1.9.1"
+    },
+    "dojoBuild": "package.js"
+}

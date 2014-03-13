@@ -1,4 +1,4 @@
 hc-frontend
-===========
+=============
 
-Husky CMS Frontend
+Frontend for HuskyCMS
