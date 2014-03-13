@@ -1,6 +1,8 @@
 <?php
 return array(
     'hc-frontend' => array(
-
+        'defaultLanguage' => 'ru',
+        'languages' => array('ru'=>array('locale'=>'ru-RU'),
+                             'uk'=>array('locale'=>'uk-UK'))
     )
 );
