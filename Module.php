@@ -43,13 +43,11 @@ class Module
         /* @var $translator \Zend\I18n\Translator\Translator */
         $translator = $sm->get('translator');
 
-        /* @var $config \HcCore\Options\ModuleOptions */
-        $config = $di->get('HcCore\Options\ModuleOptions');
+        /* @var $config \HcFrontend\Options\ModuleOptions */
+        $config = $di->get('HcFrontend\Options\ModuleOptions');
 
         $lang = $e->getRouteMatch()->getParam('lang');
         $supportingLanguages = $config->getLanguages();
-
-        \Zf2Libs\Debug\Utility::dump('LANG');
 
         if (array_key_exists($lang, $supportingLanguages) !== false) {
             $translator->setLocale($supportingLanguages[$lang]['locale']);
@@ -59,7 +57,11 @@ class Module
             } else {
                 $translator->setLocale($config->getDefaultLanguage());
             }
-            $e->getRouteMatch()->setParam('lang', '');
+
+            if (!empty($lang)) {
+                $e->getResponse()->setStatusCode(404);
+                $e->getRouteMatch()->setParam('lang', '');
+            }
         }
 
         \Locale::setDefault($translator->getLocale());

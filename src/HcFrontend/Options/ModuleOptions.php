@@ -13,7 +13,7 @@ class ModuleOptions extends AbstractOptions
     /**
      * @var array
      */
-    protected $languages;
+    protected $languages = array();
 
     /**
      * @param string $defaultLanguage
