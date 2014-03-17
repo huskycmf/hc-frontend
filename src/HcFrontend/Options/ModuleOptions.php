@@ -16,6 +16,29 @@ class ModuleOptions extends AbstractOptions
     protected $languages = array();
 
     /**
+     * @var bool
+     */
+    protected $includeValidatorLocalizedMessages = true;
+
+    /**
+     * @param boolean $includeValidatorLocalizedMessages
+     * @return $this
+     */
+    public function setIncludeValidatorLocalizedMessages($includeValidatorLocalizedMessages)
+    {
+        $this->includeValidatorLocalizedMessages = (boolean)$includeValidatorLocalizedMessages;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getIncludeValidatorLocalizedMessages()
+    {
+        return $this->includeValidatorLocalizedMessages;
+    }
+
+    /**
      * @param string $defaultLanguage
      * @return $this
      */

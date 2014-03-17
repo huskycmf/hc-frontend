@@ -17,14 +17,28 @@ class Module
         /* @var $di \Zend\Di\Di */
         $di = $sm->get('di');
 
+        $moduleOptions = $sm->get('HcFrontend\Options\ModuleOptions');
+
         $di->instanceManager()
-            ->addSharedInstance($sm->get('HcFrontend\Options\ModuleOptions'),
+            ->addSharedInstance($moduleOptions,
                                 'HcFrontend\Options\ModuleOptions');
 
         $eventManager        = $e->getApplication()->getEventManager();
 
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
+
+        if ($moduleOptions->getIncludeValidatorLocalizedMessages()) {
+            $validatorTranslator = $sm->get('di')->newInstance('Zend\Mvc\I18n\Translator', array(), false);
+            $template = 'vendor/zendframework/zendframework/resources/languages/%s/Zend_Validate.php';
+            foreach ($moduleOptions->getLanguages() as $lang=>$arr) {
+                if (file_exists($resourcePath = sprintf($template, $arr['locale'])) ||
+                    file_exists($resourcePath = sprintf($template, $lang))) {
+                    $validatorTranslator->addTranslationFile('phpArray', $resourcePath, 'default', $arr['locale']);
+                }
+            }
+            \Zend\Validator\AbstractValidator::setDefaultTranslator($validatorTranslator);
+        }
 
         $eventManager->attach(MvcEvent::EVENT_ROUTE, array($this, 'initLocale'), -1001);
     }
@@ -61,6 +75,7 @@ class Module
             if (!empty($lang)) {
                 $e->getResponse()->setStatusCode(404);
                 $e->getRouteMatch()->setParam('lang', '');
+
             }
         }
 
