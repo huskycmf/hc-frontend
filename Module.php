@@ -29,7 +29,11 @@ class Module
         $moduleRouteListener->attach($eventManager);
 
         if ($moduleOptions->getIncludeValidatorLocalizedMessages()) {
-            $validatorTranslator = $sm->get('di')->newInstance('Zend\Mvc\I18n\Translator', array(), false);
+            $validatorTranslator = $di->newInstance('Zend\Mvc\I18n\Translator',
+                                                    array('translator'=>
+                                                        $sm->get('Zend\I18n\Translator\TranslatorInterface')),
+                                                    false);
+
             $template = 'vendor/zendframework/zendframework/resources/languages/%s/Zend_Validate.php';
             foreach ($moduleOptions->getLanguages() as $lang=>$arr) {
                 if (file_exists($resourcePath = sprintf($template, $arr['locale'])) ||
@@ -55,7 +59,7 @@ class Module
         $di = $sm->get('di');
 
         /* @var $translator \Zend\I18n\Translator\Translator */
-        $translator = $sm->get('translator');
+        $translator = $sm->get('Zend\I18n\Translator\TranslatorInterface');
 
         /* @var $config \HcFrontend\Options\ModuleOptions */
         $config = $di->get('HcFrontend\Options\ModuleOptions');
